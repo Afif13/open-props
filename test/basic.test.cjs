@@ -4,7 +4,7 @@ const OpenProps = require('../dist/open-props.cjs')
 const OPtokens = require('../open-props.tokens.json')
 
 test('Should have an all included import', t => {
-  t.is(Object.keys(OpenProps).length, 1098)
+  t.is(Object.keys(OpenProps).length, 1566)
 })
 
 test('Import should have animations', async t => {
@@ -24,7 +24,7 @@ test('Import should have colors', async t => {
 })
 
 test('JSON Import should have colors', async t => {
-  t.is(Object.keys(OPtokens).length, 280)
+  t.is(Object.keys(OPtokens).length, 397)
   t.assert(Object.keys(OPtokens).includes('--orange-0'))
 })
 
@@ -42,7 +42,18 @@ test('Should produce shadow :host props', async t => {
   t.assert(fs.existsSync('./shadows.shadow.min.css'))
 })
 
+test('Should produce normalize files', async t => {
+  t.assert(fs.existsSync('./normalize.min.css'))
+  t.assert(fs.existsSync('./normalize.light.min.css'))
+  t.assert(fs.existsSync('./normalize.dark.min.css'))
+})
+
 test('Should produce optional mask props', async t => {
   t.assert(fs.existsSync('./masks.edges.min.css'))
   t.assert(fs.existsSync('./masks.corner-cuts.min.css'))
+})
+
+test('Should produce typings files', async t => {
+  t.assert(fs.existsSync('./dist/open-props.module.d.ts'))
+  t.assert(fs.existsSync('./src/props.sizes.d.ts'))
 })
